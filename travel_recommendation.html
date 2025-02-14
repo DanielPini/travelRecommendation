@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>Bonne-Voyages</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Helvetica, sans-serif;
+      }
+      body {
+        background: url(travel_background2.jpg);
+        background-repeat: no-repeat;
+        background-position: 0 -130px;
+        background-size: cover;
+      }
+      header {
+        display: flex;
+        background: linear-gradient(
+            to top right,
+            rgba(0, 0, 41, 0.9),
+            rgba(255, 208, 0, 0.6)
+          ),
+          center/cover url(header-background.png);
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px;
+        height: 60px;
+      }
+      .logo {
+        filter: invert(1);
+      }
+      h2 {
+        color: white;
+        padding-left: 10px;
+        white-space: nowrap;
+        font-style: italic;
+      }
+      nav {
+        display: flex;
+        flex-flow: row nowrap;
+        flex: 1 1;
+        padding: 0 15%;
+      }
+      nav a {
+        text-decoration: none;
+        color: white;
+        padding: 0 5%;
+        margin: 0 auto;
+        transition: transform 300ms;
+        text-transform: uppercase;
+      }
+      nav a:hover {
+        display: inline-block;
+        transform: scale(1.1) skew(30deg);
+      }
+      .search-bar {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border-radius: 30px;
+        width: 320px;
+        background-color: #fff;
+        height: 10px;
+      }
+      input[type="search"] {
+        border: none;
+        width: 210px;
+      }
+      input[type="search"]::placeholder {
+        color: rgb(143, 143, 255);
+      }
+      input[type="submit"],
+      input[type="reset"] {
+        border-radius: 5px;
+        border: none;
+        box-shadow: 1px 1px 2px 1px rgb(107, 107, 107);
+        margin-right: 3px;
+        background: rgba(255, 208, 0, 0.2);
+      }
+      .socials {
+        width: 80px;
+        min-height: calc(100vh - 60px);
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        gap: 30px;
+        padding-left: 30px;
+        justify-content: center;
+      }
+      .socials a {
+        transition: transform 300ms;
+      }
+      .socials a:hover {
+        transform: scale(1.1);
+      }
+      .white-line {
+        margin-top: 100px;
+        height: 240px;
+        width: 3px;
+        border-radius: 10px;
+        background: white;
+        margin-bottom: 50px;
+      }
+      .socials-img {
+        width: 50px;
+        border-radius: 50%;
+      }
+      .text {
+        position: absolute;
+        top: 300px;
+        left: 200px;
+        text-align: center;
+        /* transform: skew(-20deg); */
+        max-width: 270px;
+      }
+      .text h1 {
+        text-transform: uppercase;
+      }
+      .text h3 {
+        font-family: Georgia, "Times New Roman", Times, serif;
+        text-align: justify;
+        padding: 10px;
+        font-size: 18px;
+        background: rgba(255, 255, 255, 0.428);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img
+        class="logo"
+        src="logo.svg"
+        alt=""
+        width="50" />
+      <h2>Bonne-Voyages</h2>
+      <nav>
+        <a href="index.html">Home</a><a href="about.html">About&nbsp;Us</a
+        ><a href="contact.html">Contact&nbsp;Us</a>
+      </nav>
+      <div class="search-bar">
+        <input
+          type="search"
+          placeholder="Enter a destination or keyword" />
+        <input type="submit" />
+        <input
+          type="reset"
+          value="Clear" />
+      </div>
+    </header>
+    <div class="socials">
+      <div class="white-line"></div>
+      <a href="https://facebook.com"
+        ><img
+          class="socials-img"
+          src="facebook-logo.png"
+          alt=""
+      /></a>
+      <a href="https://twitter.com"
+        ><img
+          class="socials-img"
+          style="filter: invert(1)"
+          src="twitter-svgrepo-com.svg"
+          alt=""
+      /></a>
+      <a href="https://youtube.com"
+        ><img
+          class="socials-img"
+          style="filter: invert(1)"
+          src="youtube-svgrepo-com.svg"
+          alt=""
+      /></a>
+      <a href="https://instagram.com"
+        ><img
+          class="socials-img"
+          style="filter: invert(1)"
+          src="instagram-svgrepo-com.svg"
+          alt=""
+      /></a>
+    </div>
+    <div class="text">
+      <h1>
+        Explore <span style="font-style: italic; font-weight: 900">your</span
+        ><br />
+        <span style="font-size: 69px; font-weight: bold">dream</span><br />
+        <span style="font-size: 38px">destination</span>
+      </h1>
+      <h3>
+        Travel to discover the world you've been missing out on!
+        <br /><br />Live a little and see new sights that will captivate and
+        inspire. <br /><br />Perfect for reigniting passion and the joie de
+        vivre.
+      </h3>
+    </div>
+  </body>
+</html>
