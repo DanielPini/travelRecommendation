@@ -29,8 +29,8 @@
         background: url(singapore.webp);
         background-repeat: no-repeat;
         background-size: cover;
-        max-height: 100vh;
         height: 100vh;
+        max-height: 100vh;
         overflow: hidden;
       }
       header {
@@ -79,6 +79,9 @@
         cursor: default;
         pointer-events: none;
       }
+      .active:hover {
+        transform: skew(20deg);
+      }
       .search-bar {
         display: flex;
         align-items: center;
@@ -87,44 +90,9 @@
         padding-right: 0;
         border-radius: 30px;
         width: 320px;
-        background-color: #fff;
+        background-color: transparent;
+        pointer-events: none;
         height: 10px;
-      }
-      input[type="search"] {
-        border: none;
-        width: 210px;
-        border-radius: 10px;
-        padding-left: 5px;
-      }
-      input[type="search"]::placeholder {
-        color: rgb(143, 143, 255);
-      }
-      input[type="search"]:focus {
-        outline: none;
-      }
-      input[type="submit"],
-      input[type="reset"] {
-        border-radius: 15px;
-        border: none;
-        box-shadow: 1px 1px 2px 1px rgb(107, 107, 107);
-        margin-right: 3px;
-        background: var(--button-color);
-        transition: transform 300ms;
-      }
-      .search-icon {
-        background: transparent;
-        width: 20px;
-      }
-      .search-bar__buttons {
-        display: flex;
-      }
-      input[type="submit"]:hover,
-      input[type="reset"]:hover {
-        transform: scale(1.1);
-      }
-      input[type="submit"]:active,
-      input[type="reset"]:active {
-        transform: scale(0.9);
       }
       .socials {
         grid-area: socials;
@@ -159,25 +127,77 @@
         grid-area: main;
         display: flex;
         flex-flow: column;
-        margin-left: 5%;
-        margin-top: 20vh;
-        text-align: center;
-        width: 500px;
+        margin-left: 10%;
+        margin-top: 15vh;
+        text-align: left;
       }
-      .text h1 {
+      .text > h1 {
         text-transform: uppercase;
         filter: invert(1);
         text-shadow: 0 1px 3px rgb(255, 255, 255);
+        font-size: 400%;
       }
-      .text h3 {
+      .text > h3 {
         font-family: Georgia, "Times New Roman", Times, serif;
         text-align: justify;
         padding: 10px;
-        margin-left: 40px;
         font-size: 18px;
         background: rgba(255, 255, 255, 0.428);
         filter: invert(1);
-        width: 270px;
+        width: 90%;
+      }
+      .text > div {
+        display: flex;
+        text-transform: uppercase;
+        filter: invert(1);
+        text-shadow: 0 1px 3px rgb(255, 255, 255);
+        text-align: justify;
+        padding: 10px;
+        font-size: 18px;
+        background: rgba(255, 255, 255, 0.428);
+        filter: invert(1);
+        width: 90%;
+      }
+      .team {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        align-items: center;
+        justify-content: space-around;
+      }
+      .team-member {
+        display: block;
+        height: 100%;
+        width: 30%;
+        border: 3px solid black;
+      }
+      .team-member > h3 {
+        font-size: 30px;
+      }
+      .team-member > p {
+        text-transform: none;
+        padding: 0 10px;
+        text-align: left;
+      }
+      .position {
+        filter: invert(1);
+        background: rgb(41, 112, 0);
+        color: white;
+        text-align: center;
+        text-shadow: 0 1px 3px rgb(0, 0, 0);
+        border-radius: 10px;
+        margin: 0 10px;
+      }
+      .person-image {
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+        border-radius: 50%;
+      }
+      .nameplate {
+        display: flex;
+        padding: 0;
+        margin: 0;
       }
       .book-now {
         padding: 10px;
@@ -186,7 +206,6 @@
         background: var(--button-color);
         box-shadow: 1px 1px 2px 1px rgb(107, 107, 107);
         transition: transform 300ms;
-        margin-left: 40px;
         margin-top: 20px;
         align-self: flex-start;
       }
@@ -207,26 +226,14 @@
         width="50" />
       <h2>Bonnes-Voyages</h2>
       <nav>
-        <a
-          href="travel_recommendation.html"
+        <a href="travel_recommendation.html">Home</a
+        ><a
+          href="about.html"
           class="active"
-          >Home</a
-        ><a href="about.html">About&nbsp;Us</a
+          >About&nbsp;Us</a
         ><a href="contact.html">Contact&nbsp;Us</a>
       </nav>
-      <div class="search-bar">
-        <input
-          type="search"
-          placeholder="Enter a destination or keyword" />
-        <div class="search-bar__buttons">
-          <input
-            type="submit"
-            value="Submit " />
-          <input
-            type="reset"
-            value="Clear" />
-        </div>
-      </div>
+      <div class="search-bar"></div>
     </header>
     <div class="socials">
       <div class="white-line"></div>
@@ -259,27 +266,70 @@
       /></a>
     </div>
     <div class="text">
-      <h1 style="font-size: 250%">
-        <span style="font-size: 130%">Explore</span>
-        <span
-          style="
-            font-style: italic;
-            font-weight: 900;
-            font-size: 150%;
-            text-shadow: 0 0.5px 25px rgba(128, 0, 36, 0.3);
-          "
-          >your</span
-        ><br />
-        <span style="font-size: 300%; font-weight: bold">dream</span><br />
-        <span style="font-size: 161%">destination</span>
-      </h1>
+      <h1 class="about">About Us</h1>
       <h3>
-        Discover the world you've been missing out on!
-        <br /><br />See new sights that will captivate and inspire.
-        <br /><br />The perfect getaway to rekindle your joie de vivre.
+        Bonnes-Voyages is all about helping you to get where you need to go.
+        <br /><br />
+        Every one of us is passionate about providing the best service to our
+        customers, offering a unique and customised experience to you as you
+        jet-set to one of our exclusive luxury vacation locations.
+        <br /><br />
+        Bonnes-Voyages' core values center around trust and excellence. We put
+        people first to ensure you satisfaction.
+        <br /><br />
+        Get to know our team below, and explore our website to see all of our
+        offerings.
       </h3>
-      <button class="book-now">Book Now</button>
+      <div>
+        <h1>Our team</h1>
+        <div class="team">
+          <div class="team-member">
+            <div class="nameplate">
+              <img
+                class="person-image"
+                src="person.jpg"
+                alt="" />
+              <h3>Goku</h3>
+            </div>
+            <p>The founding member of the team and responsible for...</p>
+            <div class="position">
+              <h3>CEO</h3>
+            </div>
+          </div>
+          <div class="team-member">
+            <div class="nameplate">
+              <img
+                class="person-image"
+                src="person.jpg"
+                alt="" />
+              <h3>Gohan</h3>
+            </div>
+            <p>
+              A new and enthusiastic addition, specialising in the
+              technological...
+            </p>
+            <div class="position">
+              <h3>CTO</h3>
+            </div>
+          </div>
+          <div class="team-member">
+            <div class="nameplate">
+              <img
+                class="person-image"
+                src="person.jpg"
+                alt="" />
+              <h3>Krillin</h3>
+            </div>
+            <p>
+              Here since almost the beginning Krillin is a loyal part of
+              Bonnes-...
+            </p>
+            <div class="position">
+              <h3>CFO</h3>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <script src="travel_recommendation.js"></script>
   </body>
 </html>

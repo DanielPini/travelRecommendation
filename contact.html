@@ -29,8 +29,8 @@
         background: url(singapore.webp);
         background-repeat: no-repeat;
         background-size: cover;
-        max-height: 100vh;
         height: 100vh;
+        max-height: 100vh;
         overflow: hidden;
       }
       header {
@@ -79,6 +79,9 @@
         cursor: default;
         pointer-events: none;
       }
+      .active:hover {
+        transform: skew(20deg);
+      }
       .search-bar {
         display: flex;
         align-items: center;
@@ -87,44 +90,9 @@
         padding-right: 0;
         border-radius: 30px;
         width: 320px;
-        background-color: #fff;
+        background-color: transparent;
+        pointer-events: none;
         height: 10px;
-      }
-      input[type="search"] {
-        border: none;
-        width: 210px;
-        border-radius: 10px;
-        padding-left: 5px;
-      }
-      input[type="search"]::placeholder {
-        color: rgb(143, 143, 255);
-      }
-      input[type="search"]:focus {
-        outline: none;
-      }
-      input[type="submit"],
-      input[type="reset"] {
-        border-radius: 15px;
-        border: none;
-        box-shadow: 1px 1px 2px 1px rgb(107, 107, 107);
-        margin-right: 3px;
-        background: var(--button-color);
-        transition: transform 300ms;
-      }
-      .search-icon {
-        background: transparent;
-        width: 20px;
-      }
-      .search-bar__buttons {
-        display: flex;
-      }
-      input[type="submit"]:hover,
-      input[type="reset"]:hover {
-        transform: scale(1.1);
-      }
-      input[type="submit"]:active,
-      input[type="reset"]:active {
-        transform: scale(0.9);
       }
       .socials {
         grid-area: socials;
@@ -139,6 +107,7 @@
       }
       .socials a {
         transition: transform 300ms;
+        user-select: none;
       }
       .socials a:hover {
         transform: scale(1.1);
@@ -158,43 +127,72 @@
       .text {
         grid-area: main;
         display: flex;
-        flex-flow: column;
-        margin-left: 5%;
-        margin-top: 20vh;
-        text-align: center;
-        width: 500px;
+        flex-flow: row;
+        margin-left: 10%;
+        margin-top: 15vh;
+        text-align: left;
+        position: relative;
+        transform: translateY(20%);
       }
       .text h1 {
         text-transform: uppercase;
         filter: invert(1);
         text-shadow: 0 1px 3px rgb(255, 255, 255);
+        font-size: 400%;
+        margin-bottom: 0;
       }
-      .text h3 {
-        font-family: Georgia, "Times New Roman", Times, serif;
-        text-align: justify;
-        padding: 10px;
-        margin-left: 40px;
-        font-size: 18px;
-        background: rgba(255, 255, 255, 0.428);
-        filter: invert(1);
-        width: 270px;
+      .text p {
+        color: white;
+        text-shadow: 0 1px 3px rgb(0, 0, 0);
       }
-      .book-now {
-        padding: 10px;
+      .text > form {
+        margin-left: 30px;
+        width: 40%;
+        height: fit-content;
+        padding: 15px;
+        border-radius: 10px;
+        display: flex;
+        flex-flow: column;
+        background: rgba(128, 128, 128, 0.458);
+      }
+      form label {
+        color: white;
+        text-shadow: 0 1px 3px rgb(0, 0, 0);
+        padding-top: 20px;
+        padding-bottom: 5px;
+      }
+      form label:first-of-type {
+        padding-top: 0;
+      }
+      textarea {
+        height: 100px;
+      }
+      input,
+      textarea {
+        background: rgba(255, 255, 255, 0.451);
         border-radius: 10px;
         border: none;
-        background: var(--button-color);
-        box-shadow: 1px 1px 2px 1px rgb(107, 107, 107);
-        transition: transform 300ms;
-        margin-left: 40px;
+        padding: 5px;
+        color: black;
+      }
+      input[type="submit"] {
         margin-top: 20px;
-        align-self: flex-start;
+        transition: transform 300ms;
       }
-      .book-now:hover {
-        transform: scale(1.1);
+      input[type="submit"]:hover {
+        transform: scale(1.01);
       }
-      .book-now:active {
-        transform: scale(0.9);
+      input[type="submit"]:active {
+        transform: scale(0.99);
+      }
+      input::placeholder,
+      textarea::placeholder {
+        color: rgb(82, 82, 82);
+      }
+      input:focus,
+      textarea:focus {
+        outline: none;
+        border: 2px solid green;
       }
     </style>
   </head>
@@ -207,26 +205,15 @@
         width="50" />
       <h2>Bonnes-Voyages</h2>
       <nav>
-        <a
-          href="travel_recommendation.html"
-          class="active"
-          >Home</a
+        <a href="travel_recommendation.html">Home</a
         ><a href="about.html">About&nbsp;Us</a
-        ><a href="contact.html">Contact&nbsp;Us</a>
+        ><a
+          href="contact.html"
+          class="active"
+          >Contact&nbsp;Us</a
+        >
       </nav>
-      <div class="search-bar">
-        <input
-          type="search"
-          placeholder="Enter a destination or keyword" />
-        <div class="search-bar__buttons">
-          <input
-            type="submit"
-            value="Submit " />
-          <input
-            type="reset"
-            value="Clear" />
-        </div>
-      </div>
+      <div class="search-bar"></div>
     </header>
     <div class="socials">
       <div class="white-line"></div>
@@ -259,27 +246,27 @@
       /></a>
     </div>
     <div class="text">
-      <h1 style="font-size: 250%">
-        <span style="font-size: 130%">Explore</span>
-        <span
-          style="
-            font-style: italic;
-            font-weight: 900;
-            font-size: 150%;
-            text-shadow: 0 0.5px 25px rgba(128, 0, 36, 0.3);
-          "
-          >your</span
-        ><br />
-        <span style="font-size: 300%; font-weight: bold">dream</span><br />
-        <span style="font-size: 161%">destination</span>
-      </h1>
-      <h3>
-        Discover the world you've been missing out on!
-        <br /><br />See new sights that will captivate and inspire.
-        <br /><br />The perfect getaway to rekindle your joie de vivre.
-      </h3>
-      <button class="book-now">Book Now</button>
+      <div class="">
+        <h1 class="about">Contact Us</h1>
+        <p>Get in touch</p>
+      </div>
+      <form action="submit">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="Enter your name" />
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter your email" />
+        <label for="message">Message</label>
+        <textarea
+          id="message"
+          placeholder="Enter your message"></textarea>
+        <input type="submit" />
+      </form>
     </div>
-    <script src="travel_recommendation.js"></script>
   </body>
 </html>
