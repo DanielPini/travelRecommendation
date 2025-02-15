@@ -5,6 +5,8 @@ const templeRegExMatch = /temple/;
 const countryRegExMatch = /countr/;
 let searchData = "";
 
+const clearBtn = document.getElementById("clearBtn");
+
 searchInput.addEventListener("keypress", (e) => {
   if (e.key !== "Enter") {
     return;
@@ -17,6 +19,11 @@ searchInput.addEventListener("keypress", (e) => {
 submitBtn.addEventListener("click", () => {
   searchData = testKeyword(searchInput.value.toLowerCase());
   generateSearchResults();
+});
+
+clearBtn.addEventListener("click", () => {
+  searchData = "";
+  removeResultsContainer();
 });
 
 function testKeyword(input) {
@@ -56,7 +63,6 @@ function generateSearchResults() {
       return response.json();
     })
     .then((data) => {
-      console.log(searchData);
       if (searchData == "unknown" || searchData == undefined) {
         const result = document.createElement("div");
         result.classList.add("result");
@@ -82,19 +88,44 @@ function generateSearchResults() {
                   const image = document.createElement("img");
                   image.classList.add("image");
                   const blurb = document.createElement("p");
-                  blurb.classList.add("result");
+                  blurb.classList.add("blurb");
+                  const localTime = document.createElement("p");
+                  localTime.classList.add("localTime");
                   wordName.textContent = city.name;
                   image.src = city.imageUrl;
                   blurb.textContent = city.description;
                   resultsContainer.appendChild(result);
-                  result.appendChild(wordName);
                   result.appendChild(image);
+                  result.appendChild(wordName);
                   result.appendChild(blurb);
+                  let words = "";
+                  if (city.name.includes("Japan")) {
+                    words = "japan";
+                    const countryCity = words;
+                    localTime.textContent = `The time in ${
+                      city.name
+                    } is ${displayLocalTime(countryCity)}`;
+                  } else if (city.name.includes("Brazil")) {
+                    words = "America/Fortaleza";
+                    const countryCity = words;
+                    localTime.textContent = `The time in ${
+                      city.name
+                    } is ${displayLocalTime(countryCity)}`;
+                  } else {
+                    words = city.name.split(", ");
+                    const modifiedWords = words.map((word) =>
+                      word.replace(/ /g, "_")
+                    );
+                    const countryCity =
+                      modifiedWords[1] + "/" + modifiedWords[0];
+                    localTime.textContent = `The time in ${
+                      city.name
+                    } is ${displayLocalTime(countryCity)}`;
+                  }
+                  result.appendChild(localTime);
                 });
               });
             } else {
-              console.log(word.toUpperCase());
-              console.log(data[word]);
               items.forEach((item) => {
                 const result = document.createElement("div");
                 result.classList.add("result");
@@ -103,16 +134,13 @@ function generateSearchResults() {
                 const image = document.createElement("img");
                 image.classList.add("image");
                 const blurb = document.createElement("p");
-                blurb.classList.add("result");
+                blurb.classList.add("blurb");
                 wordName.textContent = item.name;
                 image.src = item.imageUrl;
                 blurb.textContent = item.description;
-                console.log(item.name);
-                console.log(item.imageUrl);
-                console.log(item.description);
                 resultsContainer.appendChild(result);
-                result.appendChild(wordName);
                 result.appendChild(image);
+                result.appendChild(wordName);
                 result.appendChild(blurb);
               });
             }
@@ -121,19 +149,37 @@ function generateSearchResults() {
       });
     })
     .catch((error) => {
-      // console.error("error", error);
+      throw new Error(error);
     });
 }
 
-//   if (word !== "countries") {
-//     wordName.textContent = data.word.name;
-//     blurb.textContent = data[word].description;
-//     console.log(`Found results for ${word}:`, data[word]);
-//     resultsContainer.appendChild(result);
-//     result.appendChild(wordName);
-//     result.appendChild(blurb);
-//   } else {
-//   }
-// } else {
-//   console.log(`No results found for ${word}`);
-// }
+function removeResultsContainer() {
+  const existingContainer = document.querySelector(".results-container");
+  if (!existingContainer) {
+    return;
+  } else {
+    document.body.removeChild(existingContainer);
+  }
+}
+
+const options = {
+  timeZone: "America/New_York",
+  hour12: true,
+  hour: "numeric",
+  minute: "numeric",
+  second: "numeric",
+};
+const newYorkTime = new Date().toLocaleTimeString("en-US", options);
+console.log("Current time in New York: ", newYorkTime);
+
+function displayLocalTime(city) {
+  const options = {
+    timeZone: city,
+    hour12: true,
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+  };
+  const time = new Date().toLocaleTimeString("en-US", options);
+  return time;
+}
