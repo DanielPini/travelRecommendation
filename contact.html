@@ -250,7 +250,7 @@
         <h1 class="about">Contact Us</h1>
         <p>Get in touch</p>
       </div>
-      <form action="submit">
+      <form onsubmit="event.preventDefault(); handleSubmit();">
         <label for="name">Name</label>
         <input
           type="text"
@@ -265,8 +265,22 @@
         <textarea
           id="message"
           placeholder="Enter your message"></textarea>
-        <input type="submit" />
+        <input
+          type="submit"
+          id="submit" />
       </form>
     </div>
+    <script>
+      const nameInput = document.getElementById("name");
+      const emailInput = document.getElementById("email");
+      const messageInput = document.getElementById("message");
+
+      function handleSubmit() {
+        alert("Message submitted. Thank you for your message.");
+        nameInput.value = "";
+        emailInput.value = "";
+        messageInput.value = "";
+      }
+    </script>
   </body>
 </html>
